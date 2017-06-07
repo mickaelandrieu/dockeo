@@ -58,13 +58,10 @@ func createFiles() {
 		if f.IsDir() {
 			if _, errDir := os.Stat(f.Name()); os.IsNotExist(errDir) {
 				if errDir != nil {
-					fmt.Printf("Copy of directory failed %q\n", errDir)
+					os.Mkdir(f.Name(), 0644)
 				}
-
-				os.Mkdir(f.Name(), 0644)
 			}
 		} else {
-
 			filepaths = append(filepaths, path)
 		}
 		return nil
